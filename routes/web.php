@@ -4,6 +4,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,4 +22,9 @@ Route::controller(RegisterController::class)->group(function(){
     Route::delete('/register/{id}','deleteData')->name('register.delete');
     Route::get('/register/{id}/edit','editData')->name('register.edit');
     Route::put('/register/{id}','updateData')->name('register.update');
+});
+
+Route::controller(LoginController::class)->group(function(){
+    Route::get('/login','showLoginform');
+    Route::post('/login','LoginData')->name('login.check');
 });
