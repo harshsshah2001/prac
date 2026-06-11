@@ -17,19 +17,21 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/payment/store', 'storePayment')->name('payment.store');
 });
 
-Route::controller(RegisterController::class)->group(function(){
-    Route::get('/register','showRegistrationForm');
-    Route::post('/register','registerData')->name('register.store');
-    Route::delete('/register/{id}','deleteData')->name('register.delete');
-    Route::get('/register/{id}/edit','editData')->name('register.edit');
-    Route::put('/register/{id}','updateData')->name('register.update');
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('/register', 'showRegistrationForm');
+    Route::post('/register', 'registerData')->name('register.store');
+    Route::delete('/register/{id}', 'deleteData')->name('register.delete');
+    Route::get('/register/{id}/edit', 'editData')->name('register.edit');
+    Route::put('/register/{id}', 'updateData')->name('register.update');
 });
 
-Route::controller(LoginController::class)->group(function(){
-    Route::get('/login','showLoginform');
-    Route::post('/login','LoginData')->name('login.check');
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/login', 'showLoginform');
+    Route::post('/login', 'LoginData')->name('login.check');
+    Route::delete('/logout', 'logout')->name('logout');
+
 });
 
-Route::controller(DashboardController::class)->group(function(){
-    Route::get('/dashboard','index')->name('user.dashboard');
+Route::controller(DashboardController::class)->group(function () {
+    Route::get('/dashboard', 'index')->name('user.dashboard');
 });

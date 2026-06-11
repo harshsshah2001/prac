@@ -5,9 +5,12 @@ namespace App\Services;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Razorpay\Api\Api;
+use App\Repositories\RegisterRepository;
 
 class UserService
 {
+
+
     public function showform()
     {
         return view('form');
@@ -49,4 +52,6 @@ class UserService
 
         return response()->json(['success' => true]);
     }
+
+
 }

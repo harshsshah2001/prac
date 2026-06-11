@@ -29,4 +29,9 @@ class UserController extends Controller
     {
         return $this->userService->storePayment($request);
     }
+
+    public function logout(Request $request)
+    {
+        return $this->userService->logout($request);
+    }
 }

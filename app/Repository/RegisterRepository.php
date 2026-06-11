@@ -6,6 +6,7 @@ use App\Models\Register;
 use App\Models\Registration_Images;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterRepository{
 
@@ -82,6 +83,18 @@ class RegisterRepository{
     public function editData($id){
         return Register::find($id);
     }
-}
 
-?>
+    public function logout($request){
+        $user= Auth::guard('register')->user();
+        if($user){
+            Storage::disk('public')->delete($user->image);
+            foreach($user->images as $image){
+                Storage::disk('public')->delete($image->image);
+            }
+            Auth::guard('register')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return true;
+        }
+    }
+}

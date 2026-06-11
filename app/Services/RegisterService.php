@@ -37,4 +37,8 @@ class RegisterService
     public function deleteData($id){
         return $this->registerRepository->deleteData($id);
     }
+
+    public function logout($request){
+        return $this->registerRepository->logout($request);
+    }
 }
